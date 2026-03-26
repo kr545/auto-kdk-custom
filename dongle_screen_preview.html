@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dongle Screen Preview – 280×240</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #2a2a3e 0%, #0d0d14 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: #e2e8f0;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #8888cc;
+    }
+
+    .info {
+      font-size: 12px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+
+    .device-frame {
+      background: linear-gradient(145deg, #1f1f2e, #11111a);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .screen-container {
+      width: 280px;
+      height: 240px;
+      background: #050508;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #000;
+      border-radius: 6px;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8);
+      image-rendering: pixelated;
+    }
+
+    .screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* Controls */
+    .controls {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .controls button {
+      background: rgba(40, 40, 60, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .controls button:hover {
+      background: rgba(60, 60, 80, 0.8);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .controls button.active {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+    .screen-label {
+      color: #888;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    /* Screen 1: Main */
+    .indicator {
+      position: absolute;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    #caps-ind {
+      left: 5px;
+      top: 5px;
+      width: 85px;
+      height: 30px;
+    }
+
+    #gesture-ind {
+      left: 5px;
+      top: 40px;
+      width: 125px;
+      height: 30px;
+    }
+
+    .ind-off {
+      color: #fff;
+    }
+
+    .ind-caps-on {
+      color: #CC2200;
+    }
+
+    .ind-gesture-on {
+      color: #0077CC;
+    }
+
+    /* Widgets placeholders */
+    .widget-placeholder {
+      position: absolute;
+      color: #555;
+      font-size: 11px;
+      text-align: center;
+      border: 1px dashed #333;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #w-output {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 24px;
+    }
+
+    #w-battery {
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 20px;
+    }
+
+    #w-layer {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140px;
+      height: 30px;
+    }
+
+    #w-wpm {
+      top: 20px;
+      left: 20px;
+      width: 80px;
+      height: 24px;
+    }
+
+    #w-mod {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% + 35px));
+      width: 140px;
+      height: 24px;
+    }
+
+    /* Screen 2: System */
+
+    #bongo-canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% + 10px));
+      image-rendering: pixelated;
+    }
+
+    /* Screen 3: Keylog */
+    .keylog-title {
+      position: absolute;
+      top: 12px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .key-label {
+      position: absolute;
+      top: 50%;
+      font-size: 16px;
+      color: #fff;
+      text-align: center;
+      width: 60px;
+    }
+
+    #kl0 {
+      left: 50%;
+      transform: translate(calc(-50% - 80px), calc(-50% + 10px));
+    }
+
+    #kl1 {
+      left: 50%;
+      transform: translate(-50%, calc(-50% + 10px));
+    }
+
+    #kl2 {
+      left: 50%;
+      transform: translate(calc(-50% + 80px), calc(-50% + 10px));
+    }
+
+    /* Touch buttons — premium glassmorphism style */
+    .touch-btn {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top-color: rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Pressed state: tactile press + neon glow */
+    .touch-btn.pressed {
+      background: rgba(14, 165, 233, 0.25) !important;
+      color: #fff !important;
+      border-color: rgba(14, 165, 233, 0.8);
+      transform: scale(0.92);
+      box-shadow:
+        0 0 15px rgba(14, 165, 233, 0.6),
+        inset 0 0 15px rgba(14, 165, 233, 0.3);
+      z-index: 10;
+    }
+
+    .touch-btn:hover:not(.pressed) {
+      background: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Toggle controls */
+    .toggle-row {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .toggle-row label {
+      cursor: pointer;
+      color: #888;
+    }
+
+    .toggle-row label:hover {
+      color: #fff;
+    }
+
+    .toggle-row input {
+      margin-right: 4px;
+    }
+
+    .key-input {
+      margin-top: 10px;
+    }
+
+    .key-input input {
+      background: #222;
+      border: 1px solid #555;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      width: 160px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .key-input span {
+      font-size: 11px;
+      color: #666;
+      margin-left: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🖥️ Dongle Screen Preview</h1>
+  <p class="info">280 × 240 px — クリックで画面切替 / キーボード入力でキーログ確認</p>
+
+  <div class="device-frame">
+    <div class="screen-container" id="display">
+      <!-- Screen 1: Main -->
+      <div class="screen active" id="screen-main">
+        <div class="indicator" id="caps-ind"><span id="caps-text" class="ind-off">CAPS</span></div>
+        <div class="indicator" id="gesture-ind"><span id="gesture-text" class="ind-off">GESTURE</span></div>
+        <div class="widget-placeholder" id="w-output">Output Status</div>
+        <div class="widget-placeholder" id="w-battery">Battery: L ██████ 85% &nbsp; R ████ 62%</div>
+        <div class="widget-placeholder" id="w-layer">Layer: 0</div>
+        <div class="widget-placeholder" id="w-wpm">WPM: 0</div>
+        <div class="widget-placeholder" id="w-mod">Mods: none</div>
+      </div>
+      <!-- Screen 2: System Control -->
+      <div class="screen" id="screen-system">
+        <canvas id="bongo-canvas" width="120" height="62"></canvas>
+      </div>
+      <!-- Screen 3: Key History -->
+      <div class="screen" id="screen-keylog">
+        <div class="keylog-title">Key History</div>
+        <div class="key-label" id="kl0">---</div>
+        <div class="key-label" id="kl1">---</div>
+        <div class="key-label" id="kl2">---</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="active" onclick="switchScreen(0)">Main</button>
+    <button onclick="switchScreen(1)">System</button>
+    <button onclick="switchScreen(2)">Key History</button>
+    <span class="screen-label" id="scr-label">Screen 1/3</span>
+  </div>
+
+  <div class="toggle-row">
+    <label><input type="checkbox" id="chk-caps" onchange="toggleCaps()"> CAPS LOCK</label>
+    <label><input type="checkbox" id="chk-gesture" onchange="toggleGesture()"> GESTURE</label>
+    <label><input type="checkbox" id="chk-bongo" onchange="toggleBongo()"> Bongo Tap</label>
+  </div>
+
+  <div class="key-input">
+    <input type="text" id="key-sim" placeholder="ここにキーを打つとログに反映" maxlength="1">
+    <span>← キーを押してみてください</span>
+  </div>
+
+  <script>
+    // --- Screen switching ---
+    const screens = [document.getElementById('screen-main'), document.getElementById('screen-system'), document.getElementById('screen-keylog')];
+    const btns = document.querySelectorAll('.controls button');
+    let currentScreen = 0;
+
+    function switchScreen(idx) {
+      screens.forEach((s, i) => { s.classList.toggle('active', i === idx); btns[i].classList.toggle('active', i === idx); });
+      currentScreen = idx;
+      document.getElementById('scr-label').textContent = `Screen ${idx + 1}/3`;
+    }
+
+    // --- Indicator toggles ---
+    function toggleCaps() {
+      const on = document.getElementById('chk-caps').checked;
+      document.getElementById('caps-text').className = on ? 'ind-caps-on' : 'ind-off';
+    }
+    function toggleGesture() {
+      const on = document.getElementById('chk-gesture').checked;
+      document.getElementById('gesture-text').className = on ? 'ind-gesture-on' : 'ind-off';
+    }
+
+    // --- Bongo Cat (simple ASCII art version on canvas) ---
+    const bongoCanvas = document.getElementById('bongo-canvas');
+    const ctx = bongoCanvas.getContext('2d');
+    let bongoState = 0; // 0=none,1=left,2=right,3=both
+
+    function drawBongo(state) {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, 120, 62);
+      ctx.fillStyle = '#fff';
+      ctx.font = '9px monospace';
+      const frames = [
+        ['    ╱|、', '   (˚ˎ 。7', '    |、˜〵', '    じしˍ,)ノ', '', '   ∧___∧', '  ( =^.^= )  zzZ', '   /     \\\\'],
+        ['    ╱|、', '   (˚ˎ 。7', '    |、˜〵', '    じしˍ,)ノ', '', '   ∧___∧', '  ( =^.^= )', '  _/  |  \\_ ♪'],
+        ['    ╱|、', '   (˚ˎ 。7', '    |、˜〵', '    じしˍ,)ノ', '', '   ∧___∧', '  ( =^.^= )', '   _/ || \\_  ♫'],
+        ['    ╱|、', '   (˚ˎ 。7', '    |、˜〵', '    じしˍ,)ノ', '', '   ∧___∧', '  ( =^.^= ) !!', '  _/  ||  \\_  ♬'],
+      ];
+      const f = frames[state] || frames[0];
+      f.forEach((line, i) => ctx.fillText(line, 4, 8 + i * 8));
+    }
+    drawBongo(0);
+
+    function toggleBongo() {
+      const on = document.getElementById('chk-bongo').checked;
+      bongoState = on ? (bongoState === 0 ? 1 : (bongoState < 3 ? bongoState + 1 : 1)) : 0;
+      drawBongo(bongoState);
+    }
+
+    // --- Key History ---
+    const keyHistory = ['---', '---', '---'];
+    function pushKey(name) {
+      keyHistory.unshift(name);
+      keyHistory.length = 3;
+      document.getElementById('kl0').textContent = keyHistory[0];
+      document.getElementById('kl1').textContent = keyHistory[1];
+      document.getElementById('kl2').textContent = keyHistory[2];
+    }
+
+    document.getElementById('key-sim').addEventListener('keydown', e => {
+      e.preventDefault();
+      const name = e.key.length === 1 ? e.key.toUpperCase() : e.key;
+      pushKey(name);
+      if (currentScreen !== 2) switchScreen(2);
+    });
+
+    // --- Touch Buttons (Screen 3) — Semicircle style ---
+    // Each button on the edge of the screen. Semicircle = rounded on the outer edge only.
+    // edge: 'top' | 'bottom' | 'left' | 'right' determines which side is rounded.
+    const btnDefs = [
+      // All 16 buttons: 40×40, quarter-circle (1 rounded corner → center)
+      // 4 corners + 3 per edge = 16
+      // Corner buttons
+      { x: 0, y: 0, w: 40, h: 40, label: 'Boot', edge: 'corner-tl' },
+      { x: 240, y: 0, w: 40, h: 40, label: 'Reboot', edge: 'corner-tr' },
+      { x: 0, y: 200, w: 40, h: 40, label: 'Sleep', edge: 'corner-bl' },
+      { x: 240, y: 200, w: 40, h: 40, label: 'Lock', edge: 'corner-br' },
+      // Top edge (3): BT controls
+      { x: 60, y: 0, w: 40, h: 40, label: 'BT 1', edge: 'top' },
+      { x: 120, y: 0, w: 40, h: 40, label: 'BT 2', edge: 'top' },
+      { x: 180, y: 0, w: 40, h: 40, label: 'BT Clr', edge: 'top' },
+      // Bottom edge (3): Clipboard
+      { x: 60, y: 200, w: 40, h: 40, label: 'Cut', edge: 'bottom' },
+      { x: 120, y: 200, w: 40, h: 40, label: 'Copy', edge: 'bottom' },
+      { x: 180, y: 200, w: 40, h: 40, label: 'Paste', edge: 'bottom' },
+      // Left edge (3): Volume
+      { x: 0, y: 50, w: 40, h: 40, label: 'Vol+', edge: 'left' },
+      { x: 0, y: 100, w: 40, h: 40, label: 'Mute', edge: 'left' },
+      { x: 0, y: 150, w: 40, h: 40, label: 'Vol-', edge: 'left' },
+      // Right edge (3): Media
+      { x: 240, y: 50, w: 40, h: 40, label: 'Prev', edge: 'right' },
+      { x: 240, y: 100, w: 40, h: 40, label: 'Play', edge: 'right' },
+      { x: 240, y: 150, w: 40, h: 40, label: 'Next', edge: 'right' },
+    ];
+
+    // Compute border-radius based on edge (semicircle) or corner (quarter-circle)
+    function semiRadius(edge, w, h) {
+      const r = Math.min(w, h);
+      // Rounded side faces INWARD (toward screen center)
+      switch (edge) {
+        case 'top': return `0 0 ${r}px ${r}px`;
+        case 'bottom': return `${r}px ${r}px 0 0`;
+        case 'left': return `0 ${r}px ${r}px 0`;
+        case 'right': return `${r}px 0 0 ${r}px`;
+        // Corners: only inner corner is rounded
+        case 'corner-tl': return `0 0 ${r}px 0`;
+        case 'corner-tr': return `0 0 0 ${r}px`;
+        case 'corner-bl': return `0 ${r}px 0 0`;
+        case 'corner-br': return `${r}px 0 0 0`;
+      }
+      return '0';
+    }
+
+    const systemScreen = document.getElementById('screen-system');
+    btnDefs.forEach(b => {
+      const el = document.createElement('div');
+      el.className = 'touch-btn';
+      const bw = b.w - 2;
+      const bh = b.h - 2;
+      el.style.cssText = `left:${b.x + 1}px;top:${b.y + 1}px;width:${bw}px;height:${bh}px;font-size:${b.label.length >= 6 ? '8' : (b.label.length >= 4 ? '9' : '11')}px;border-radius:${semiRadius(b.edge, bw, bh)};`;
+      el.textContent = b.label;
+
+      // Key-press feel: mousedown = pressed, mouseup/leave = released
+      el.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        el.classList.add('pressed');
+        pushKey(b.label);
+      });
+      el.addEventListener('mouseup', () => {
+        el.classList.remove('pressed');
+      });
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('pressed');
+      });
+      // Touch support
+      el.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        el.classList.add('pressed');
+        pushKey(b.label);
+      }, { passive: false });
+      el.addEventListener('touchend', () => {
+        el.classList.remove('pressed');
+      });
+
+      systemScreen.appendChild(el);
+    });
+
+    // Keyboard shortcut: space to cycle screens
+    document.addEventListener('keydown', e => {
+      if (e.target.id === 'key-sim') return;
+      if (e.code === 'Space') { e.preventDefault(); switchScreen((currentScreen + 1) % 3); }
+    });
+  </script>
+</body>
+
+</html>

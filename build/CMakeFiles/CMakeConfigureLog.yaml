@@ -1,0 +1,1227 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt"
+    message: |
+      The system is: Darwin - 25.1.0 - arm64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QwaoNa"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QwaoNa"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QwaoNa'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_1b860/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_1b860.dir/build.make CMakeFiles/cmTC_1b860.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QwaoNa'
+        Building C object CMakeFiles/cmTC_1b860.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_1b860.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_1b860.dir/build.make:78: CMakeFiles/cmTC_1b860.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QwaoNa'
+        gmake: *** [Makefile:127: cmTC_1b860/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-mEFRJ1"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-mEFRJ1"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-mEFRJ1'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_e3001/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_e3001.dir/build.make CMakeFiles/cmTC_e3001.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-mEFRJ1'
+        Building C object CMakeFiles/cmTC_e3001.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_e3001.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-mEFRJ1/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_e3001.dir/build.make:78: CMakeFiles/cmTC_e3001.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-mEFRJ1'
+        gmake: *** [Makefile:127: cmTC_e3001/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0DFcU"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0DFcU"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0DFcU'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_44bbc/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_44bbc.dir/build.make CMakeFiles/cmTC_44bbc.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0DFcU'
+        Building C object CMakeFiles/cmTC_44bbc.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_44bbc.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_44bbc.dir/build.make:78: CMakeFiles/cmTC_44bbc.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0DFcU'
+        gmake: *** [Makefile:127: cmTC_44bbc/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-VKeDqn"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-VKeDqn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-VKeDqn'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_79ce1/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_79ce1.dir/build.make CMakeFiles/cmTC_79ce1.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-VKeDqn'
+        Building C object CMakeFiles/cmTC_79ce1.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_79ce1.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-VKeDqn/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_79ce1.dir/build.make:78: CMakeFiles/cmTC_79ce1.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-VKeDqn'
+        gmake: *** [Makefile:127: cmTC_79ce1/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-FNjps0"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-FNjps0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-FNjps0'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_30621/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_30621.dir/build.make CMakeFiles/cmTC_30621.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-FNjps0'
+        Building C object CMakeFiles/cmTC_30621.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_30621.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_30621.dir/build.make:78: CMakeFiles/cmTC_30621.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-FNjps0'
+        gmake: *** [Makefile:127: cmTC_30621/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NSnY4G"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NSnY4G"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NSnY4G'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_a2ca8/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_a2ca8.dir/build.make CMakeFiles/cmTC_a2ca8.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NSnY4G'
+        Building C object CMakeFiles/cmTC_a2ca8.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_a2ca8.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NSnY4G/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_a2ca8.dir/build.make:78: CMakeFiles/cmTC_a2ca8.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NSnY4G'
+        gmake: *** [Makefile:127: cmTC_a2ca8/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-rfDf8A"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-rfDf8A"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-rfDf8A'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_c5750/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_c5750.dir/build.make CMakeFiles/cmTC_c5750.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-rfDf8A'
+        Building C object CMakeFiles/cmTC_c5750.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_c5750.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_c5750.dir/build.make:78: CMakeFiles/cmTC_c5750.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-rfDf8A'
+        gmake: *** [Makefile:127: cmTC_c5750/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-uCYQGO"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-uCYQGO"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-uCYQGO'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_92eb7/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_92eb7.dir/build.make CMakeFiles/cmTC_92eb7.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-uCYQGO'
+        Building C object CMakeFiles/cmTC_92eb7.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_92eb7.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-uCYQGO/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_92eb7.dir/build.make:78: CMakeFiles/cmTC_92eb7.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-uCYQGO'
+        gmake: *** [Makefile:127: cmTC_92eb7/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-e4o8m7"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-e4o8m7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-e4o8m7'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_21179/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_21179.dir/build.make CMakeFiles/cmTC_21179.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-e4o8m7'
+        Building C object CMakeFiles/cmTC_21179.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_21179.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_21179.dir/build.make:78: CMakeFiles/cmTC_21179.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-e4o8m7'
+        gmake: *** [Makefile:127: cmTC_21179/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-a1UTSD"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-a1UTSD"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-a1UTSD'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_4be2b/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_4be2b.dir/build.make CMakeFiles/cmTC_4be2b.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-a1UTSD'
+        Building C object CMakeFiles/cmTC_4be2b.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_4be2b.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-a1UTSD/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_4be2b.dir/build.make:78: CMakeFiles/cmTC_4be2b.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-a1UTSD'
+        gmake: *** [Makefile:127: cmTC_4be2b/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ANtRGq"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ANtRGq"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ANtRGq'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_9551f/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_9551f.dir/build.make CMakeFiles/cmTC_9551f.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ANtRGq'
+        Building C object CMakeFiles/cmTC_9551f.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_9551f.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_9551f.dir/build.make:78: CMakeFiles/cmTC_9551f.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ANtRGq'
+        gmake: *** [Makefile:127: cmTC_9551f/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ZWu2ys"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ZWu2ys"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ZWu2ys'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_f4b06/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_f4b06.dir/build.make CMakeFiles/cmTC_f4b06.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ZWu2ys'
+        Building C object CMakeFiles/cmTC_f4b06.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_f4b06.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ZWu2ys/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_f4b06.dir/build.make:78: CMakeFiles/cmTC_f4b06.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-ZWu2ys'
+        gmake: *** [Makefile:127: cmTC_f4b06/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-K8dJRT"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-K8dJRT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-K8dJRT'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_7a518/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_7a518.dir/build.make CMakeFiles/cmTC_7a518.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-K8dJRT'
+        Building C object CMakeFiles/cmTC_7a518.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_7a518.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_7a518.dir/build.make:78: CMakeFiles/cmTC_7a518.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-K8dJRT'
+        gmake: *** [Makefile:127: cmTC_7a518/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-vX1M7W"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-vX1M7W"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-vX1M7W'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_9b66b/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_9b66b.dir/build.make CMakeFiles/cmTC_9b66b.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-vX1M7W'
+        Building C object CMakeFiles/cmTC_9b66b.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_9b66b.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-vX1M7W/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_9b66b.dir/build.make:78: CMakeFiles/cmTC_9b66b.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-vX1M7W'
+        gmake: *** [Makefile:127: cmTC_9b66b/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-bVQWH6"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-bVQWH6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-bVQWH6'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_5fff8/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_5fff8.dir/build.make CMakeFiles/cmTC_5fff8.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-bVQWH6'
+        Building C object CMakeFiles/cmTC_5fff8.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_5fff8.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_5fff8.dir/build.make:78: CMakeFiles/cmTC_5fff8.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-bVQWH6'
+        gmake: *** [Makefile:127: cmTC_5fff8/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-pMmw3q"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-pMmw3q"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-pMmw3q'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_e99eb/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_e99eb.dir/build.make CMakeFiles/cmTC_e99eb.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-pMmw3q'
+        Building C object CMakeFiles/cmTC_e99eb.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_e99eb.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-pMmw3q/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_e99eb.dir/build.make:78: CMakeFiles/cmTC_e99eb.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-pMmw3q'
+        gmake: *** [Makefile:127: cmTC_e99eb/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0RGSO"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0RGSO"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0RGSO'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_642a8/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_642a8.dir/build.make CMakeFiles/cmTC_642a8.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0RGSO'
+        Building C object CMakeFiles/cmTC_642a8.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_642a8.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_642a8.dir/build.make:78: CMakeFiles/cmTC_642a8.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-y0RGSO'
+        gmake: *** [Makefile:127: cmTC_642a8/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-AT0hnn"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-AT0hnn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-AT0hnn'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_c6e39/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_c6e39.dir/build.make CMakeFiles/cmTC_c6e39.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-AT0hnn'
+        Building C object CMakeFiles/cmTC_c6e39.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_c6e39.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-AT0hnn/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_c6e39.dir/build.make:78: CMakeFiles/cmTC_c6e39.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-AT0hnn'
+        gmake: *** [Makefile:127: cmTC_c6e39/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/homebrew/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/homebrew/bin/avr-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QD8ZU5"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QD8ZU5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QD8ZU5'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_877be/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_877be.dir/build.make CMakeFiles/cmTC_877be.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QD8ZU5'
+        Building C object CMakeFiles/cmTC_877be.dir/CMakeCCompilerABI.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk   -v -Wl,-v -o CMakeFiles/cmTC_877be.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeCCompilerABI.c
+        avr-gcc: error: arm64: No such file or directory
+        Using built-in specs.
+        Reading specs from /opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9/gcc/avr/9.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/opt/homebrew/bin/avr-gcc
+        avr-gcc: error: unrecognized command line option '-arch'
+        Target: avr
+        Configured with: ../configure --target=avr --prefix=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1 --libdir=/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/lib/avr-gcc/9 --enable-languages=c,c++ --with-ld=/opt/homebrew/opt/avr-binutils/bin/avr-ld --with-as=/opt/homebrew/opt/avr-binutils/bin/avr-as --disable-nls --disable-libssp --disable-shared --disable-threads --disable-libgomp --with-dwarf2 --with-avrlibc --with-system-zlib --with-pkgversion='Homebrew AVR GCC 9.4.0_1' --with-bugurl=https://github.com/osx-cross/homebrew-avr/issues SED=/usr/bin/sed
+        Thread model: single
+        gcc version 9.4.0 (Homebrew AVR GCC 9.4.0_1) 
+        gmake[1]: *** [CMakeFiles/cmTC_877be.dir/build.make:78: CMakeFiles/cmTC_877be.dir/CMakeCCompilerABI.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-QD8ZU5'
+        gmake: *** [Makefile:127: cmTC_877be/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.29.2/share/cmake/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /opt/homebrew/bin/avr-gcc"
+    directories:
+      source: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NV3ksP"
+      binary: "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NV3ksP"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NV3ksP'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.29.2/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_755bb/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_755bb.dir/build.make CMakeFiles/cmTC_755bb.dir/build
+        gmake[1]: Entering directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NV3ksP'
+        Building C object CMakeFiles/cmTC_755bb.dir/testCCompiler.c.o
+        /opt/homebrew/bin/avr-gcc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -o CMakeFiles/cmTC_755bb.dir/testCCompiler.c.o -c "/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NV3ksP/testCCompiler.c"
+        avr-gcc: error: arm64: No such file or directory
+        avr-gcc: error: unrecognized command line option '-arch'
+        gmake[1]: *** [CMakeFiles/cmTC_755bb.dir/build.make:78: CMakeFiles/cmTC_755bb.dir/testCCompiler.c.o] Error 1
+        gmake[1]: Leaving directory '/Users/kobayashirei/Downloads/auto-kdk_1-main 2/build/CMakeFiles/CMakeScratch/TryCompile-NV3ksP'
+        gmake: *** [Makefile:127: cmTC_755bb/fast] Error 2
+        
+      exitCode: 2
+...

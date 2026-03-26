@@ -1,0 +1,14 @@
+
+file_format: "1"
+id: split_ergo60pct
+name: split_ergo60pct
+type: shield
+features:
+  - keys
+  - studio
+outputs:
+  - usb
+  - ble
+siblings:
+  - split_ergo60pct_left
+  - split_ergo60pct_right
