@@ -446,27 +446,27 @@
 
     // --- Touch Buttons (Screen 2) — Semicircle edge style ---
     const btnDefs = [
-      // Corner buttons
-      { x: 0, y: 0, w: 40, h: 40, label: 'Boot', edge: 'corner-tl' },
-      { x: 240, y: 0, w: 40, h: 40, label: 'Reboot', edge: 'corner-tr' },
-      { x: 0, y: 200, w: 40, h: 40, label: 'Sleep', edge: 'corner-bl' },
-      { x: 240, y: 200, w: 40, h: 40, label: 'Lock', edge: 'corner-br' },
+      // Corner buttons (48x48)
+      { x: 0, y: 0, w: 48, h: 48, label: 'Boot', edge: 'corner-tl' },
+      { x: 232, y: 0, w: 48, h: 48, label: 'Reboot', edge: 'corner-tr' },
+      { x: 0, y: 192, w: 48, h: 48, label: 'Sleep', edge: 'corner-bl' },
+      { x: 232, y: 192, w: 48, h: 48, label: 'Lock', edge: 'corner-br' },
       // Top edge (3): BT controls
-      { x: 60, y: 0, w: 40, h: 40, label: 'BT 1', edge: 'top' },
-      { x: 120, y: 0, w: 40, h: 40, label: 'BT 2', edge: 'top' },
-      { x: 180, y: 0, w: 40, h: 40, label: 'BT Clr', edge: 'top' },
+      { x: 58, y: 0, w: 48, h: 48, label: 'BT 1', edge: 'top' },
+      { x: 116, y: 0, w: 48, h: 48, label: 'BT 2', edge: 'top' },
+      { x: 174, y: 0, w: 48, h: 48, label: 'BT Clr', edge: 'top' },
       // Bottom edge (3): Clipboard
-      { x: 60, y: 200, w: 40, h: 40, label: 'Cut', edge: 'bottom' },
-      { x: 120, y: 200, w: 40, h: 40, label: 'Copy', edge: 'bottom' },
-      { x: 180, y: 200, w: 40, h: 40, label: 'Paste', edge: 'bottom' },
+      { x: 58, y: 192, w: 48, h: 48, label: 'Cut', edge: 'bottom' },
+      { x: 116, y: 192, w: 48, h: 48, label: 'Copy', edge: 'bottom' },
+      { x: 174, y: 192, w: 48, h: 48, label: 'Paste', edge: 'bottom' },
       // Left edge (3): Volume
-      { x: 0, y: 50, w: 40, h: 40, label: 'Vol+', edge: 'left' },
-      { x: 0, y: 100, w: 40, h: 40, label: 'Mute', edge: 'left' },
-      { x: 0, y: 150, w: 40, h: 40, label: 'Vol-', edge: 'left' },
+      { x: 0, y: 48, w: 48, h: 48, label: 'Vol+', edge: 'left' },
+      { x: 0, y: 96, w: 48, h: 48, label: 'Mute', edge: 'left' },
+      { x: 0, y: 144, w: 48, h: 48, label: 'Vol-', edge: 'left' },
       // Right edge (3): Media
-      { x: 240, y: 50, w: 40, h: 40, label: 'Prev', edge: 'right' },
-      { x: 240, y: 100, w: 40, h: 40, label: 'Play', edge: 'right' },
-      { x: 240, y: 150, w: 40, h: 40, label: 'Next', edge: 'right' },
+      { x: 232, y: 48, w: 48, h: 48, label: 'Prev', edge: 'right' },
+      { x: 232, y: 96, w: 48, h: 48, label: 'Play', edge: 'right' },
+      { x: 232, y: 144, w: 48, h: 48, label: 'Next', edge: 'right' },
     ];
 
     function semiRadius(edge, w, h) {

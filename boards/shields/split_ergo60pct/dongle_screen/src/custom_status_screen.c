@@ -106,26 +106,26 @@ struct touch_btn_zone {
 
 static const struct touch_btn_zone btn_zones[BTN_COUNT] = {
     // Corners
-    [BTN_TL] = {  0,  39,   0,  39, ACT_SYS, 0, 1, 0, "Boot"},
-    [BTN_TR] = {240, 279,   0,  39, ACT_SYS, 0, 2, 0, "Reboot"},
-    [BTN_BL] = {  0,  39, 200, 239, ACT_HID_CONS, 0x0C, 0x032, 0, "Sleep"},
-    [BTN_BR] = {240, 279, 200, 239, ACT_HID_KEY, 0x07, 0x0F, 0x08, "Lock"}, // LGUI + L
+    [BTN_TL] = {  0,  47,   0,  47, ACT_SYS, 0, 1, 0, "Boot"},
+    [BTN_TR] = {232, 279,   0,  47, ACT_SYS, 0, 2, 0, "Reboot"},
+    [BTN_BL] = {  0,  47, 192, 239, ACT_HID_CONS, 0x0C, 0x032, 0, "Sleep"},
+    [BTN_BR] = {232, 279, 192, 239, ACT_HID_KEY, 0x07, 0x0F, 0x08, "Lock"}, // LGUI + L
     // Top
-    [BTN_T1] = { 60,  99,   0,  39, ACT_BLE, 0, 0, 0, "BT 1"},
-    [BTN_T2] = {120, 159,   0,  39, ACT_BLE, 0, 1, 0, "BT 2"},
-    [BTN_T3] = {180, 219,   0,  39, ACT_BLE, 0, 99, 0, "BT Clr"},
+    [BTN_T1] = { 58, 105,   0,  47, ACT_BLE, 0, 0, 0, "BT 1"},
+    [BTN_T2] = {116, 163,   0,  47, ACT_BLE, 0, 1, 0, "BT 2"},
+    [BTN_T3] = {174, 221,   0,  47, ACT_BLE, 0, 99, 0, "BT Clr"},
     // Bottom
-    [BTN_B1] = { 60,  99, 200, 239, ACT_HID_KEY, 0x07, 0x7B, 0, "Cut"},
-    [BTN_B2] = {120, 159, 200, 239, ACT_HID_KEY, 0x07, 0x7C, 0, "Copy"},
-    [BTN_B3] = {180, 219, 200, 239, ACT_HID_KEY, 0x07, 0x7D, 0, "Paste"},
+    [BTN_B1] = { 58, 105, 192, 239, ACT_HID_KEY, 0x07, 0x7B, 0, "Cut"},
+    [BTN_B2] = {116, 163, 192, 239, ACT_HID_KEY, 0x07, 0x7C, 0, "Copy"},
+    [BTN_B3] = {174, 221, 192, 239, ACT_HID_KEY, 0x07, 0x7D, 0, "Paste"},
     // Left
-    [BTN_L1] = {  0,  39,  50,  89, ACT_HID_CONS, 0x0C, 0xE9, 0, "Vol+"},
-    [BTN_L2] = {  0,  39, 100, 139, ACT_HID_CONS, 0x0C, 0xE2, 0, "Mute"},
-    [BTN_L3] = {  0,  39, 150, 189, ACT_HID_CONS, 0x0C, 0xEA, 0, "Vol-"},
+    [BTN_L1] = {  0,  47,  48,  95, ACT_HID_CONS, 0x0C, 0xE9, 0, "Vol+"},
+    [BTN_L2] = {  0,  47,  96, 143, ACT_HID_CONS, 0x0C, 0xE2, 0, "Mute"},
+    [BTN_L3] = {  0,  47, 144, 191, ACT_HID_CONS, 0x0C, 0xEA, 0, "Vol-"},
     // Right
-    [BTN_R1] = {240, 279,  50,  89, ACT_HID_CONS, 0x0C, 0xB6, 0, "Prev"},
-    [BTN_R2] = {240, 279, 100, 139, ACT_HID_CONS, 0x0C, 0xCD, 0, "Play"},
-    [BTN_R3] = {240, 279, 150, 189, ACT_HID_CONS, 0x0C, 0xB5, 0, "Next"},
+    [BTN_R1] = {232, 279,  48,  95, ACT_HID_CONS, 0x0C, 0xB6, 0, "Prev"},
+    [BTN_R2] = {232, 279,  96, 143, ACT_HID_CONS, 0x0C, 0xCD, 0, "Play"},
+    [BTN_R3] = {232, 279, 144, 191, ACT_HID_CONS, 0x0C, 0xB5, 0, "Next"},
 };
 
 // LVGL button label objects
@@ -437,11 +437,6 @@ static void btn_highlight(int idx, bool on) {
 
 // Currently pressed button index (-1 = none)
 static int active_btn = -1;
-
-// Work queue handlers to safely interact with LVGL/ZMK from the system work queue
-static struct k_work touch_press_work;
-static struct k_work touch_release_work;
-static struct k_work touch_screen_swap_work;
 
 static void execute_btn_action(int idx, bool pressed) {
     const struct touch_btn_zone *z = &btn_zones[idx];
