@@ -403,12 +403,13 @@ static void raise_keycode_event(uint16_t usage_page, uint32_t keycode, uint8_t m
     raise_zmk_keycode_state_changed(ev);
 }
 
-// Convert raw CST816S coordinates → LVGL coordinates (270°/90° rotation)
+// Convert raw CST816S coordinates → LVGL coordinates.
+// The screen content is rotated, so touch input must be rotated to match the
+// visually displayed buttons. In practice the previous X inversion caused
+// mirrored button hits, so map raw Y directly to LVGL X.
 static void raw_to_lvgl(int32_t raw_x, int32_t raw_y,
                         int32_t *lvgl_x, int32_t *lvgl_y) {
-    // 数学的に正確な270度（反時計回り）回転を適用する
-    // デバイストリーのINPUT_TRANSFORM_XY_SWAPはこのレイアウトに影響しません。
-    *lvgl_x = 279 - raw_y;
+    *lvgl_x = raw_y;
     *lvgl_y = raw_x;
 }
 
