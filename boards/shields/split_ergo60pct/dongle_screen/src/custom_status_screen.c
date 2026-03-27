@@ -51,9 +51,6 @@ extern const lv_font_t lv_font_montserrat_12;
 #include <string.h>
 #include <stdio.h>
 
-#if IS_ENABLED(CONFIG_RETENTION_BOOT_MODE)
-#include <zephyr/retention/bootmode.h>
-#endif
 
 // nRF52840 + Adafruit UF2 bootloader: write 0x57 to GPREGRET before cold reboot
 #define BOOTLOADER_DFU_START      0x57U
@@ -487,29 +484,9 @@ static void execute_btn_action(int idx, bool pressed) {
         case ACT_SYS:
             if (pressed) {
                 if (z->val == 1) {
-#if IS_ENABLED(CONFIG_RETENTION_BOOT_MODE)
-                    int ret = bootmode_set(BOOT_MODE_TYPE_BOOTLOADER);
-                    if (ret < 0) {
-                        LOG_ERR("Failed to set bootloader mode (%d)", ret);
-                        return;
-                    }
-                    sys_reboot(SYS_REBOOT_WARM);
-#else
-                    *NRF_POWER_GPREGRET_ADDR = BOOTLOADER_DFU_START;
-                    sys_reboot(SYS_REBOOT_COLD);
-#endif
+                    sys_reboot(BOOTLOADER_DFU_START);
                 } else if (z->val == 2) {
-#if IS_ENABLED(CONFIG_RETENTION_BOOT_MODE)
-                    int ret = bootmode_set(BOOT_MODE_TYPE_NORMAL);
-                    if (ret < 0) {
-                        LOG_ERR("Failed to clear bootloader mode (%d)", ret);
-                        return;
-                    }
-                    sys_reboot(SYS_REBOOT_WARM);
-#else
-                    *NRF_POWER_GPREGRET_ADDR = 0;
                     sys_reboot(SYS_REBOOT_COLD);
-#endif
                 }
             }
             break;
