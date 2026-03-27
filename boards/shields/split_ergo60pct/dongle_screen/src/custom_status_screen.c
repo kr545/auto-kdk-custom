@@ -412,7 +412,7 @@ static void raise_keycode_event(uint16_t usage_page, uint32_t keycode, uint8_t m
 static void raw_to_lvgl(int32_t raw_x, int32_t raw_y,
                         int32_t *lvgl_x, int32_t *lvgl_y) {
     *lvgl_x = raw_y;
-    *lvgl_y = raw_x + TOUCH_Y_OFFSET;
+    *lvgl_y = 239 - (raw_x + TOUCH_Y_OFFSET);
 
     if (*lvgl_x < 0) *lvgl_x = 0;
     if (*lvgl_x > 279) *lvgl_x = 279;
