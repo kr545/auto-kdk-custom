@@ -75,6 +75,8 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #define BTN_EDGE_LEFT      40   // Left edge: LVGL X = 0 .. BTN_EDGE_LEFT-1
 #define BTN_EDGE_RIGHT    240   // Right edge: LVGL X = BTN_EDGE_RIGHT .. 279
 
+#include <zmk/ble.h>
+
 #define BTN_COUNT 16
 
 enum touch_btn_id {
@@ -85,35 +87,45 @@ enum touch_btn_id {
     BTN_R1, BTN_R2, BTN_R3,              // Right edge
 };
 
+enum btn_action_type {
+    ACT_SYS = 0,
+    ACT_BLE,
+    ACT_HID_KEY,
+    ACT_HID_CONS
+};
+
 struct touch_btn_zone {
     int16_t x_min, x_max;
     int16_t y_min, y_max;
-    uint32_t keycode;
+    enum btn_action_type type;
+    uint16_t usage_page;
+    uint32_t val;
+    uint8_t mods;
     const char *label;
 };
 
 static const struct touch_btn_zone btn_zones[BTN_COUNT] = {
     // Corners
-    [BTN_TL] = {  0,  39,   0,  39, 0x68, "Boot"},
-    [BTN_TR] = {240, 279,   0,  39, 0x69, "Reboot"},
-    [BTN_BL] = {  0,  39, 200, 239, 0x6A, "Sleep"},
-    [BTN_BR] = {240, 279, 200, 239, 0x6B, "Lock"},
+    [BTN_TL] = {  0,  39,   0,  39, ACT_SYS, 0, 1, 0, "Boot"},
+    [BTN_TR] = {240, 279,   0,  39, ACT_SYS, 0, 2, 0, "Reboot"},
+    [BTN_BL] = {  0,  39, 200, 239, ACT_HID_CONS, 0x0C, 0x032, 0, "Sleep"},
+    [BTN_BR] = {240, 279, 200, 239, ACT_HID_KEY, 0x07, 0x0F, 0x08, "Lock"}, // LGUI + L
     // Top
-    [BTN_T1] = { 60,  99,   0,  39, 0x3A, "BT 1"},
-    [BTN_T2] = {120, 159,   0,  39, 0x3B, "BT 2"},
-    [BTN_T3] = {180, 219,   0,  39, 0x3C, "BT Clr"},
+    [BTN_T1] = { 60,  99,   0,  39, ACT_BLE, 0, 0, 0, "BT 1"},
+    [BTN_T2] = {120, 159,   0,  39, ACT_BLE, 0, 1, 0, "BT 2"},
+    [BTN_T3] = {180, 219,   0,  39, ACT_BLE, 0, 99, 0, "BT Clr"},
     // Bottom
-    [BTN_B1] = { 60,  99, 200, 239, 0x3D, "Cut"},
-    [BTN_B2] = {120, 159, 200, 239, 0x3E, "Copy"},
-    [BTN_B3] = {180, 219, 200, 239, 0x3F, "Paste"},
+    [BTN_B1] = { 60,  99, 200, 239, ACT_HID_KEY, 0x07, 0x7B, 0, "Cut"},
+    [BTN_B2] = {120, 159, 200, 239, ACT_HID_KEY, 0x07, 0x7C, 0, "Copy"},
+    [BTN_B3] = {180, 219, 200, 239, ACT_HID_KEY, 0x07, 0x7D, 0, "Paste"},
     // Left
-    [BTN_L1] = {  0,  39,  50,  89, 0x40, "Vol+"},
-    [BTN_L2] = {  0,  39, 100, 139, 0x41, "Mute"},
-    [BTN_L3] = {  0,  39, 150, 189, 0x42, "Vol-"},
+    [BTN_L1] = {  0,  39,  50,  89, ACT_HID_CONS, 0x0C, 0xE9, 0, "Vol+"},
+    [BTN_L2] = {  0,  39, 100, 139, ACT_HID_CONS, 0x0C, 0xE2, 0, "Mute"},
+    [BTN_L3] = {  0,  39, 150, 189, ACT_HID_CONS, 0x0C, 0xEA, 0, "Vol-"},
     // Right
-    [BTN_R1] = {240, 279,  50,  89, 0x43, "Prev"},
-    [BTN_R2] = {240, 279, 100, 139, 0x44, "Play"},
-    [BTN_R3] = {240, 279, 150, 189, 0x45, "Next"},
+    [BTN_R1] = {240, 279,  50,  89, ACT_HID_CONS, 0x0C, 0xB6, 0, "Prev"},
+    [BTN_R2] = {240, 279, 100, 139, ACT_HID_CONS, 0x0C, 0xCD, 0, "Play"},
+    [BTN_R3] = {240, 279, 150, 189, ACT_HID_CONS, 0x0C, 0xB5, 0, "Next"},
 };
 
 // LVGL button label objects
@@ -379,12 +391,12 @@ ZMK_LISTENER(widget_bongo_cat, bongo_cat_listener);
 ZMK_SUBSCRIPTION(widget_bongo_cat, zmk_position_state_changed);
 
 // Raise a ZMK keycode_state_changed event (press or release)
-static void raise_keycode_event(uint32_t keycode, bool pressed) {
+static void raise_keycode_event(uint16_t usage_page, uint32_t keycode, uint8_t modifiers, bool pressed) {
     struct zmk_keycode_state_changed ev = {
-        .usage_page = 0x07,   // HID Keyboard/Keypad page
+        .usage_page = usage_page,
         .keycode = keycode,
-        .implicit_modifiers = 0,
-        .explicit_modifiers = 0,
+        .implicit_modifiers = modifiers,
+        .explicit_modifiers = modifiers,
         .state = pressed,
         .timestamp = k_uptime_get(),
     };
@@ -431,19 +443,47 @@ static struct k_work touch_press_work;
 static struct k_work touch_release_work;
 static struct k_work touch_screen_swap_work;
 
+static void execute_btn_action(int idx, bool pressed) {
+    const struct touch_btn_zone *z = &btn_zones[idx];
+    switch (z->type) {
+        case ACT_SYS:
+            if (pressed) {
+                if (z->val == 1) {
+                    *NRF_POWER_GPREGRET_ADDR = BOOTLOADER_DFU_START;
+                    sys_reboot(SYS_REBOOT_COLD);
+                } else if (z->val == 2) {
+                    sys_reboot(SYS_REBOOT_COLD);
+                }
+            }
+            break;
+        case ACT_BLE:
+            if (pressed) {
+                if (z->val == 99) {
+                    zmk_ble_clear_bonds();
+                } else {
+                    zmk_ble_prof_select(z->val);
+                }
+            }
+            break;
+        case ACT_HID_KEY:
+        case ACT_HID_CONS:
+            raise_keycode_event(z->usage_page, z->val, z->mods, pressed);
+            break;
+    }
+}
+
 static void touch_press_handler(struct k_work *work) {
     if (active_btn >= 0) {
         btn_highlight(active_btn, true);
-        raise_keycode_event(btn_zones[active_btn].keycode, true);
-        LOG_INF("Button %s pressed (keycode 0x%02X)",
-                btn_zones[active_btn].label, btn_zones[active_btn].keycode);
+        execute_btn_action(active_btn, true);
+        LOG_INF("Button %s pressed", btn_zones[active_btn].label);
     }
 }
 
 static void touch_release_handler(struct k_work *work) {
     if (active_btn >= 0) {
         btn_highlight(active_btn, false);
-        raise_keycode_event(btn_zones[active_btn].keycode, false);
+        execute_btn_action(active_btn, false);
         LOG_INF("Button %s released", btn_zones[active_btn].label);
         active_btn = -1;
     }
