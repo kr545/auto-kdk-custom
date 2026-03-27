@@ -113,7 +113,7 @@ static const struct touch_btn_zone btn_zones[BTN_COUNT] = {
     // Top edge (3): BT controls, overlapping horizontally by 5px
     [BTN_T1] = { 55, 114,   0,  59, ACT_BLE, 0, 0, 0, "BT 1"},
     [BTN_T2] = {110, 169,   0,  59, ACT_BLE, 0, 1, 0, "BT 2"},
-    [BTN_T3] = {165, 224,   0,  59, ACT_BLE, 0, 99, 0, "BT Clr"},
+    [BTN_T3] = {165, 224,   0,  59, ACT_BLE, 0, 2, 0, "BT 3"},
     // Bottom edge (3): Clipboard
     [BTN_B1] = { 55, 114, 180, 239, ACT_HID_KEY, 0x07, 0x7B, 0, "Cut"},
     [BTN_B2] = {110, 169, 180, 239, ACT_HID_KEY, 0x07, 0x7C, 0, "Copy"},
