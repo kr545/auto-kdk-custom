@@ -292,7 +292,8 @@ static int view_toggle_listener(const zmk_event_t *eh) {
     if (ev != NULL && ev->state) { // Only trigger on key press
         uint32_t toggle_keycode = (CONFIG_DONGLE_SCREEN_VIEW_TOGGLE_KEYCODE & 0xFFFF);
 
-        if (ev->keycode == toggle_keycode) {
+        uint16_t id = (ev->keycode & 0xFFFF);
+        if (id == toggle_keycode) {
             // 3画面サイクル
             if (screen_main != NULL && screen_text != NULL && screen_keylog != NULL) {
                 int next = (current_screen + 1) % SCREEN_COUNT;
@@ -443,6 +444,10 @@ static void touch_input_callback(struct input_event *evt) {
                     raise_keycode_event(btn_zones[idx].keycode, true);
                     LOG_INF("Button %s pressed (keycode 0x%02X)",
                             btn_zones[idx].label, btn_zones[idx].keycode);
+                } else {
+                    int next = (current_screen + 1) % SCREEN_COUNT;
+                    switch_to_screen(next);
+                    LOG_INF("Screen tapped on empty area, switching to screen %d", next);
                 }
             } else {
                 // Touch release
@@ -453,8 +458,11 @@ static void touch_input_callback(struct input_event *evt) {
                     active_btn = -1;
                 }
             }
-        } else if (evt->value == 1 && current_screen == SCREEN_SYSTEM) {
-            LOG_INF("Touch on bongo cat page: x=%d y=%d", last_touch_x, last_touch_y);
+        } else if (evt->value == 1) {
+            // Touch press on SCREEN_MAIN or SCREEN_SYSTEM (empty space) cycles the screen
+            int next = (current_screen + 1) % SCREEN_COUNT;
+            switch_to_screen(next);
+            LOG_INF("Screen tapped, switching to screen %d", next);
         }
     }
 }
