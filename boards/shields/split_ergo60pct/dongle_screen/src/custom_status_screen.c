@@ -403,11 +403,13 @@ static void raise_keycode_event(uint16_t usage_page, uint32_t keycode, uint8_t m
     raise_zmk_keycode_state_changed(ev);
 }
 
-// Convert raw CST816S coordinates → LVGL coordinates (270° rotation)
+// Convert raw CST816S coordinates → LVGL coordinates (270°/90° rotation)
 static void raw_to_lvgl(int32_t raw_x, int32_t raw_y,
                         int32_t *lvgl_x, int32_t *lvgl_y) {
-    // 270° rotation: LVGL_X = 279 - raw_Y, LVGL_Y = raw_X
-    *lvgl_x = 279 - raw_y;
+    // デバイストリー（dongle.overlay）のトラックボール設定が XY_SWAP のみ
+    // (反転なし) になっているため、LVGL座標も単なるXY入れ替えに合わせます。
+    // もしこれでもズレる場合（例: 上下や左右が逆）は、適宜 279 - raw_y などに変更してください。
+    *lvgl_x = raw_y;
     *lvgl_y = raw_x;
 }
 
