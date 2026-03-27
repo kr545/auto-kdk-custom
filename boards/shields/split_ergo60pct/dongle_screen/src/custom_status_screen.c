@@ -437,8 +437,16 @@ static void btn_highlight(int idx, bool on) {
     }
 }
 
-// Currently pressed button index (-1 = none)
-static int active_btn = -1;
+// Message Queue to properly sequence fast touch events for the UI/ZMK workqueue
+struct touch_event_msg {
+    int16_t idx;     // Button index, or -1 for screen swap
+    bool pressed;    // true = pressed, false = released
+};
+
+K_MSGQ_DEFINE(touch_msgq, sizeof(struct touch_event_msg), 16, 4);
+
+// This tracks which button is currently physically held down (Input Thread exclusively)
+static int last_pressed_idx = -1;
 
 static void execute_btn_action(int idx, bool pressed) {
     const struct touch_btn_zone *z = &btn_zones[idx];
@@ -469,32 +477,23 @@ static void execute_btn_action(int idx, bool pressed) {
     }
 }
 
-static void touch_press_handler(struct k_work *work) {
-    if (active_btn >= 0) {
-        btn_highlight(active_btn, true);
-        execute_btn_action(active_btn, true);
-        LOG_INF("Button %s pressed", btn_zones[active_btn].label);
+static void touch_process_handler(struct k_work *work) {
+    struct touch_event_msg msg;
+    // Process all pending touch events sequentially
+    while (k_msgq_get(&touch_msgq, &msg, K_NO_WAIT) == 0) {
+        if (msg.idx >= 0 && msg.idx < BTN_COUNT) {
+            btn_highlight(msg.idx, msg.pressed);
+            execute_btn_action(msg.idx, msg.pressed);
+            LOG_INF("Button %s %s", btn_zones[msg.idx].label, msg.pressed ? "pressed" : "released");
+        } else if (msg.idx == -1 && msg.pressed) {
+            int next = (current_screen + 1) % SCREEN_COUNT;
+            switch_to_screen(next);
+            LOG_INF("Screen tapped on empty area, switching to screen %d", next);
+        }
     }
 }
 
-static void touch_release_handler(struct k_work *work) {
-    if (active_btn >= 0) {
-        btn_highlight(active_btn, false);
-        execute_btn_action(active_btn, false);
-        LOG_INF("Button %s released", btn_zones[active_btn].label);
-        active_btn = -1;
-    }
-}
-
-static void touch_screen_swap_handler(struct k_work *work) {
-    int next = (current_screen + 1) % SCREEN_COUNT;
-    switch_to_screen(next);
-    LOG_INF("Screen tapped on empty area, switching to screen %d", next);
-}
-
-K_WORK_DEFINE(touch_press_work, touch_press_handler);
-K_WORK_DEFINE(touch_release_work, touch_release_handler);
-K_WORK_DEFINE(touch_screen_swap_work, touch_screen_swap_handler);
+K_WORK_DEFINE(touch_process_work, touch_process_handler);
 
 // Zephyr Input Listener – filtered to CST816S touch sensor only.
 static void touch_input_callback(struct input_event *evt) {
@@ -519,20 +518,28 @@ static void touch_input_callback(struct input_event *evt) {
                 // Touch press
                 int idx = find_touched_button(lx, ly);
                 if (idx >= 0) {
-                    active_btn = idx;
-                    k_work_submit(&touch_press_work);
+                    last_pressed_idx = idx;
+                    struct touch_event_msg msg = { .idx = idx, .pressed = true };
+                    k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
                 } else {
-                    k_work_submit(&touch_screen_swap_work);
+                    struct touch_event_msg msg = { .idx = -1, .pressed = true };
+                    k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
                 }
+                k_work_submit(&touch_process_work);
             } else {
                 // Touch release
-                if (active_btn >= 0) {
-                    k_work_submit(&touch_release_work);
+                if (last_pressed_idx >= 0) {
+                    struct touch_event_msg msg = { .idx = last_pressed_idx, .pressed = false };
+                    k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
+                    k_work_submit(&touch_process_work);
+                    last_pressed_idx = -1;
                 }
             }
         } else if (evt->value == 1) {
             // Touch press on SCREEN_MAIN or SCREEN_KEYLOG cycles the screen
-            k_work_submit(&touch_screen_swap_work);
+            struct touch_event_msg msg = { .idx = -1, .pressed = true };
+            k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
+            k_work_submit(&touch_process_work);
         }
     }
 }
