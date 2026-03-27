@@ -445,6 +445,8 @@ struct touch_event_msg {
 
 K_MSGQ_DEFINE(touch_msgq, sizeof(struct touch_event_msg), 16, 4);
 
+// Track if a physical touch is currently active to debounce ghost/multi touches (Input Thread exclusively)
+static bool is_touching = false;
 // This tracks which button is currently physically held down (Input Thread exclusively)
 static int last_pressed_idx = -1;
 
@@ -516,18 +518,25 @@ static void touch_input_callback(struct input_event *evt) {
 
             if (evt->value == 1) {
                 // Touch press
+                if (is_touching) {
+                    return; // Ignore supplementary ghost/multi touches
+                }
+                is_touching = true;
+
                 int idx = find_touched_button(lx, ly);
                 if (idx >= 0) {
                     last_pressed_idx = idx;
                     struct touch_event_msg msg = { .idx = idx, .pressed = true };
                     k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
                 } else {
+                    last_pressed_idx = -1;
                     struct touch_event_msg msg = { .idx = -1, .pressed = true };
                     k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
                 }
                 k_work_submit(&touch_process_work);
             } else {
                 // Touch release
+                is_touching = false;
                 if (last_pressed_idx >= 0) {
                     struct touch_event_msg msg = { .idx = last_pressed_idx, .pressed = false };
                     k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
@@ -537,9 +546,16 @@ static void touch_input_callback(struct input_event *evt) {
             }
         } else if (evt->value == 1) {
             // Touch press on SCREEN_MAIN or SCREEN_KEYLOG cycles the screen
+            if (is_touching) {
+                return; // Ignore supplementary touches
+            }
+            is_touching = true;
             struct touch_event_msg msg = { .idx = -1, .pressed = true };
             k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
             k_work_submit(&touch_process_work);
+        } else {
+            // Touch release on SCREEN_MAIN or SCREEN_KEYLOG
+            is_touching = false;
         }
     }
 }
