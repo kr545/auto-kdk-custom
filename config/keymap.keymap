@@ -223,7 +223,7 @@
 &kp TAB               &kp Q              &kp W            &end   &kp R         &kp T                                              &kp Y            &kp U        &kp I      &kp O       &up_arrow                   &mt PLUS MINUS
 &mt LEFT_CONTROL ESC  &home              &kp S            &kp D  &right_arrow  &kp G                                              &back            &return      &k         &kp L       &mt LEFT_CONTROL SEMICOLON  &mt LEFT_COMMAND SQT
 &kp LEFT_SHIFT        &kp Z              &kp X            &kp C  &kp V         &left_arrow                                        &bottom_arrow    &kp M        &kp COMMA  &kp PERIOD  &kp SLASH                   &mt BACKSLASH TILDE
-                      &kp C_VOLUME_DOWN  &kp C_VOLUME_UP                                                                                                                                                           &to 0
+                      &kp C_VOLUME_DOWN  &kp C_VOLUME_UP                                                                                                                                                           &to 2
                                                                  &kp LEFT_ALT  &mt RIGHT_CONTROL LC(SPACE)  &mt LEFT_SHIFT SPACE  &lt 3 BACKSPACE  &lt 2 ENTER
             >;
         };
@@ -231,22 +231,22 @@
         layer_2 {
             display-name = "Number";
             bindings = <
-&none  &none       &mt LS(NUMBER_1) NUMBER_1  &mt LS(NUMBER_2) NUMBER_2  &mt LS(NUMBER_3) NUMBER_3  &kp EQUAL                              &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACKET                   &kp RIGHT_BRACKET                    &none            &new_macro
-&none  &none       &mt LS(NUMBER_4) NUMBER_4  &mt LS(N5) NUMBER_5        &mt LS(NUMBER_6) NUMBER_6  &kp PLUS                               &none                 &kp LEFT_ARROW         &kp UP_ARROW                       &kp DOWN_ARROW                       &kp RIGHT_ARROW  &none
-&none  &none       &mt LS(N7) NUMBER_7        &mt LS(N8) NUMBER_8        &mt LS(N9) NUMBER_9        &kp MINUS                              &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &mt LS(LEFT_BRACKET) LEFT_BRACKET  &mt LS(RIGHT_BRACKET) RIGHT_BRACKET  &none            &none
-       &bt BT_NXT  &bt BT_PRV                                                                                                                                                                                                                                                    &none
-                                                                         &kp LEFT_COMMAND           &kp NUMBER_0  &mt LEFT_COMMAND PERIOD  &none                 &none
+&none  &none  &mt LS(NUMBER_1) NUMBER_1  &mt LS(NUMBER_2) NUMBER_2  &mt LS(NUMBER_3) NUMBER_3  &kp EQUAL                              &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACKET                   &kp RIGHT_BRACKET                    &none            &new_macro
+&none  &none  &mt LS(NUMBER_4) NUMBER_4  &mt LS(N5) NUMBER_5        &mt LS(NUMBER_6) NUMBER_6  &kp PLUS                               &none                 &kp LEFT_ARROW         &kp UP_ARROW                       &kp DOWN_ARROW                       &kp RIGHT_ARROW  &none
+&none  &none  &mt LS(N7) NUMBER_7        &mt LS(N8) NUMBER_8        &mt LS(N9) NUMBER_9        &kp MINUS                              &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &mt LS(LEFT_BRACKET) LEFT_BRACKET  &mt LS(RIGHT_BRACKET) RIGHT_BRACKET  &none            &none
+       &to 0  &to 1                                                                                                                                                                                                                                                         &none
+                                                                    &kp LEFT_COMMAND           &kp NUMBER_0  &mt LEFT_COMMAND PERIOD  &none                 &none
             >;
         };
 
         layer_3 {
             display-name = "Bluetooth";
             bindings = <
-&none  &none  &kp F1  &kp F2  &kp F3  &kp F22         &out OUT_TOG  &mac           &windows       &windows2      &bt BT_SEL 3   &bt BT_SEL 4
-&none  &none  &kp F4  &kp F5  &kp F6  &kp F23         &none         &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_CLR_ALL
-&none  &none  &kp F7  &kp F8  &kp F9  &kp F24         &none         &none          &none          &none          &none          &bt BT_CLR
-       &none  &none                                                                                                             &none
-                              &none   &none    &none  &none         &none
+&none  &kp F21  &kp F1  &kp F2  &kp F3  &kp F22         &out OUT_TOG  &mac           &windows       &windows2      &bt BT_SEL 3   &bt BT_SEL 4
+&none  &none    &kp F4  &kp F5  &kp F6  &kp F23         &none         &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_CLR_ALL
+&none  &none    &kp F7  &kp F8  &kp F9  &kp F24         &none         &none          &none          &none          &none          &bt BT_CLR
+       &none    &none                                                                                                             &none
+                                &none   &none    &none  &none         &none
             >;
         };
 
@@ -289,7 +289,7 @@
 &mt LC(LS(TAB)) LC(TAB)  &kp LG(DOWN_ARROW)  &kp LG(LEFT_ARROW)  &kp LG(UP_ARROW)  &kp LG(RIGHT_ARROW)  &kp LG(LS(O))                    &none          &mkp MB5                &none              &none     &none  &none
 &kp LEFT_CONTROL         &kp LC(A)           &kp LC(S)           &mkp RCLK         &mkp LCLK            &mo 8                            &kp F5         &mkp LCLK               &mkp RCLK          &mkp MB3  &mo 5  &mkp MB4
 &kp LEFT_SHIFT           &kp LC(Z)           &kp LC(X)           &kp LC(C)         &kp LC(V)            &kp LS(LG(S))                    &none          &kp LC(LG(LEFT_ARROW))  &kp LC(LG(RIGHT))  &none     &none  &none
-                         &none               &none                                                                                                                                                                  &none
+                         &to 0               &none                                                                                                                                                                  &none
                                                                                    &mo 4                &new_hold_tap 5 1  &mouse_speed  &kp BACKSPACE  &kp RETURN
             >;
         };

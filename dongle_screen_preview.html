@@ -444,12 +444,8 @@
       if (currentScreen !== 2) switchScreen(2);
     });
 
-    // --- Touch Buttons (Screen 3) — Semicircle style ---
-    // Each button on the edge of the screen. Semicircle = rounded on the outer edge only.
-    // edge: 'top' | 'bottom' | 'left' | 'right' determines which side is rounded.
+    // --- Touch Buttons (Screen 2) — Semicircle edge style ---
     const btnDefs = [
-      // All 16 buttons: 40×40, quarter-circle (1 rounded corner → center)
-      // 4 corners + 3 per edge = 16
       // Corner buttons
       { x: 0, y: 0, w: 40, h: 40, label: 'Boot', edge: 'corner-tl' },
       { x: 240, y: 0, w: 40, h: 40, label: 'Reboot', edge: 'corner-tr' },
@@ -473,16 +469,13 @@
       { x: 240, y: 150, w: 40, h: 40, label: 'Next', edge: 'right' },
     ];
 
-    // Compute border-radius based on edge (semicircle) or corner (quarter-circle)
     function semiRadius(edge, w, h) {
       const r = Math.min(w, h);
-      // Rounded side faces INWARD (toward screen center)
       switch (edge) {
         case 'top': return `0 0 ${r}px ${r}px`;
         case 'bottom': return `${r}px ${r}px 0 0`;
         case 'left': return `0 ${r}px ${r}px 0`;
         case 'right': return `${r}px 0 0 ${r}px`;
-        // Corners: only inner corner is rounded
         case 'corner-tl': return `0 0 ${r}px 0`;
         case 'corner-tr': return `0 0 0 ${r}px`;
         case 'corner-bl': return `0 ${r}px 0 0`;
@@ -500,27 +493,19 @@
       el.style.cssText = `left:${b.x + 1}px;top:${b.y + 1}px;width:${bw}px;height:${bh}px;font-size:${b.label.length >= 6 ? '8' : (b.label.length >= 4 ? '9' : '11')}px;border-radius:${semiRadius(b.edge, bw, bh)};`;
       el.textContent = b.label;
 
-      // Key-press feel: mousedown = pressed, mouseup/leave = released
       el.addEventListener('mousedown', (e) => {
         e.preventDefault();
         el.classList.add('pressed');
         pushKey(b.label);
       });
-      el.addEventListener('mouseup', () => {
-        el.classList.remove('pressed');
-      });
-      el.addEventListener('mouseleave', () => {
-        el.classList.remove('pressed');
-      });
-      // Touch support
+      el.addEventListener('mouseup', () => { el.classList.remove('pressed'); });
+      el.addEventListener('mouseleave', () => { el.classList.remove('pressed'); });
       el.addEventListener('touchstart', (e) => {
         e.preventDefault();
         el.classList.add('pressed');
         pushKey(b.label);
       }, { passive: false });
-      el.addEventListener('touchend', () => {
-        el.classList.remove('pressed');
-      });
+      el.addEventListener('touchend', () => { el.classList.remove('pressed'); });
 
       systemScreen.appendChild(el);
     });

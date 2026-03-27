@@ -75,46 +75,48 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #define BTN_EDGE_LEFT      40   // Left edge: LVGL X = 0 .. BTN_EDGE_LEFT-1
 #define BTN_EDGE_RIGHT    240   // Right edge: LVGL X = BTN_EDGE_RIGHT .. 279
 
-#define BTN_COUNT 14
+#define BTN_COUNT 16
 
-// ボタンID
 enum touch_btn_id {
-    BTN_T1 = 0, BTN_T2, BTN_T3, BTN_T4,   // Top edge (4)
-    BTN_B1, BTN_B2, BTN_B3, BTN_B4,       // Bottom edge (4)
-    BTN_L1, BTN_L2, BTN_L3,                // Left edge (3)
-    BTN_R1, BTN_R2, BTN_R3,                // Right edge (3)
+    BTN_TL = 0, BTN_TR, BTN_BL, BTN_BR,  // Corners
+    BTN_T1, BTN_T2, BTN_T3,              // Top edge
+    BTN_B1, BTN_B2, BTN_B3,              // Bottom edge
+    BTN_L1, BTN_L2, BTN_L3,              // Left edge
+    BTN_R1, BTN_R2, BTN_R3,              // Right edge
 };
 
-// ボタン定義テーブル (LVGL座標)
 struct touch_btn_zone {
-    int16_t x_min, x_max;  // LVGL X range (inclusive)
-    int16_t y_min, y_max;  // LVGL Y range (inclusive)
-    uint32_t keycode;       // HID keycode to emit
-    const char *label;      // Display label
+    int16_t x_min, x_max;
+    int16_t y_min, y_max;
+    uint32_t keycode;
+    const char *label;
 };
 
 static const struct touch_btn_zone btn_zones[BTN_COUNT] = {
-    // Top edge: 4 buttons across X, Y = 0..39
-    [BTN_T1] = {  0,  69, 0, 39, 0x3A, "F1"},
-    [BTN_T2] = { 70, 139, 0, 39, 0x3B, "F2"},
-    [BTN_T3] = {140, 209, 0, 39, 0x3C, "F3"},
-    [BTN_T4] = {210, 279, 0, 39, 0x3D, "F4"},
-    // Bottom edge: 4 buttons across X, Y = 200..239
-    [BTN_B1] = {  0,  69, 200, 239, 0x3E, "F5"},
-    [BTN_B2] = { 70, 139, 200, 239, 0x3F, "F6"},
-    [BTN_B3] = {140, 209, 200, 239, 0x40, "F7"},
-    [BTN_B4] = {210, 279, 200, 239, 0x41, "F8"},
-    // Left edge: 3 buttons down Y, X = 0..39
-    [BTN_L1] = {0, 39,  40, 119, 0x42, "F9"},
-    [BTN_L2] = {0, 39, 120, 159, 0x43, "F10"},
-    [BTN_L3] = {0, 39, 160, 239, 0x44, "F11"},
-    // Right edge: 3 buttons down Y, X = 240..279
-    [BTN_R1] = {240, 279,  40, 119, 0x45, "F12"},
-    [BTN_R2] = {240, 279, 120, 159, 0x46, "PrtSc"},
-    [BTN_R3] = {240, 279, 160, 239, 0x47, "ScrLk"},
+    // Corners
+    [BTN_TL] = {  0,  39,   0,  39, 0x68, "Boot"},
+    [BTN_TR] = {240, 279,   0,  39, 0x69, "Reboot"},
+    [BTN_BL] = {  0,  39, 200, 239, 0x6A, "Sleep"},
+    [BTN_BR] = {240, 279, 200, 239, 0x6B, "Lock"},
+    // Top
+    [BTN_T1] = { 60,  99,   0,  39, 0x3A, "BT 1"},
+    [BTN_T2] = {120, 159,   0,  39, 0x3B, "BT 2"},
+    [BTN_T3] = {180, 219,   0,  39, 0x3C, "BT Clr"},
+    // Bottom
+    [BTN_B1] = { 60,  99, 200, 239, 0x3D, "Cut"},
+    [BTN_B2] = {120, 159, 200, 239, 0x3E, "Copy"},
+    [BTN_B3] = {180, 219, 200, 239, 0x3F, "Paste"},
+    // Left
+    [BTN_L1] = {  0,  39,  50,  89, 0x40, "Vol+"},
+    [BTN_L2] = {  0,  39, 100, 139, 0x41, "Mute"},
+    [BTN_L3] = {  0,  39, 150, 189, 0x42, "Vol-"},
+    // Right
+    [BTN_R1] = {240, 279,  50,  89, 0x43, "Prev"},
+    [BTN_R2] = {240, 279, 100, 139, 0x44, "Play"},
+    [BTN_R3] = {240, 279, 150, 189, 0x45, "Next"},
 };
 
-// LVGL button label objects on screen_keylog
+// LVGL button label objects
 static lv_obj_t *btn_labels[BTN_COUNT];
 static lv_obj_t *btn_bgs[BTN_COUNT];
 
@@ -268,6 +270,14 @@ static void keylog_push(uint32_t keycode) {
 
 // 画面の表示/非表示を切り替えるヘルパー
 static void switch_to_screen(int idx) {
+    if (!screen_main || !screen_text || !screen_keylog) return;
+
+    // 前の描画が残るのを防ぐため、親スクリーン全体を再描画対象にする
+    lv_obj_t *parent = lv_obj_get_parent(screen_main);
+    if (parent) {
+        lv_obj_invalidate(parent);
+    }
+
     lv_obj_add_flag(screen_main,   LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(screen_text,   LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(screen_keylog, LV_OBJ_FLAG_HIDDEN);
@@ -429,10 +439,10 @@ static void touch_input_callback(struct input_event *evt) {
             last_touch_y = evt->value;
         }
     } else if (evt->type == INPUT_EV_KEY && evt->code == INPUT_BTN_TOUCH) {
-        if (current_screen == SCREEN_KEYLOG) {
+        if (current_screen == SCREEN_SYSTEM) {
             int32_t lx, ly;
             raw_to_lvgl(last_touch_x, last_touch_y, &lx, &ly);
-            LOG_INF("Touch on keylog page: raw(%d,%d) lvgl(%d,%d)",
+            LOG_INF("Touch on system page: raw(%d,%d) lvgl(%d,%d)",
                     last_touch_x, last_touch_y, lx, ly);
 
             if (evt->value == 1) {
@@ -459,7 +469,7 @@ static void touch_input_callback(struct input_event *evt) {
                 }
             }
         } else if (evt->value == 1) {
-            // Touch press on SCREEN_MAIN or SCREEN_SYSTEM (empty space) cycles the screen
+            // Touch press on SCREEN_MAIN or SCREEN_KEYLOG (empty space) cycles the screen
             int next = (current_screen + 1) % SCREEN_COUNT;
             switch_to_screen(next);
             LOG_INF("Screen tapped, switching to screen %d", next);
@@ -564,7 +574,7 @@ lv_obj_t *zmk_display_status_screen()
         lv_obj_align(keylog_labels[i], LV_ALIGN_CENTER, key_label_x[i], 10);
     }
 
-    // ---- Touch Buttons (14 buttons along edges) ----
+    // ---- Touch Buttons (16 buttons bounding the edges) ----
     for (int i = 0; i < BTN_COUNT; i++) {
         const struct touch_btn_zone *z = &btn_zones[i];
         int w = z->x_max - z->x_min + 1;
@@ -576,15 +586,16 @@ lv_obj_t *zmk_display_status_screen()
         int off_x = cx - 140;
         int off_y = cy - 120;
 
-        // Background rectangle
-        btn_bgs[i] = lv_obj_create(screen_keylog);
+        // Background rectangle on System Screen instead of KeyLog
+        btn_bgs[i] = lv_obj_create(screen_text);
         lv_obj_set_size(btn_bgs[i], w - 2, h - 2);
         lv_obj_align(btn_bgs[i], LV_ALIGN_CENTER, off_x, off_y);
         lv_obj_set_style_bg_color(btn_bgs[i], lv_color_hex(0x333333), LV_PART_MAIN);
         lv_obj_set_style_bg_opa(btn_bgs[i], 220, LV_PART_MAIN);
         lv_obj_set_style_border_color(btn_bgs[i], lv_color_hex(0x666666), LV_PART_MAIN);
         lv_obj_set_style_border_width(btn_bgs[i], 1, LV_PART_MAIN);
-        lv_obj_set_style_radius(btn_bgs[i], 4, LV_PART_MAIN);
+        // Using radius 20 makes 40x40 objects circular, giving a nice edge button appearance
+        lv_obj_set_style_radius(btn_bgs[i], 20, LV_PART_MAIN);
         lv_obj_clear_flag(btn_bgs[i], LV_OBJ_FLAG_SCROLLABLE);
 
         // Label
