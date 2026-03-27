@@ -486,6 +486,7 @@ static void execute_btn_action(int idx, bool pressed) {
                     *NRF_POWER_GPREGRET_ADDR = BOOTLOADER_DFU_START;
                     sys_reboot(SYS_REBOOT_COLD);
                 } else if (z->val == 2) {
+                    *NRF_POWER_GPREGRET_ADDR = 0;
                     sys_reboot(SYS_REBOOT_COLD);
                 }
             }
