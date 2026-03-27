@@ -407,10 +407,17 @@ static void raise_keycode_event(uint16_t usage_page, uint32_t keycode, uint8_t m
 // The screen content is rotated, so touch input must be rotated to match the
 // visually displayed buttons. In practice the previous X inversion caused
 // mirrored button hits, so map raw Y directly to LVGL X.
+#define TOUCH_Y_OFFSET 12
+
 static void raw_to_lvgl(int32_t raw_x, int32_t raw_y,
                         int32_t *lvgl_x, int32_t *lvgl_y) {
     *lvgl_x = raw_y;
-    *lvgl_y = raw_x;
+    *lvgl_y = raw_x + TOUCH_Y_OFFSET;
+
+    if (*lvgl_x < 0) *lvgl_x = 0;
+    if (*lvgl_x > 279) *lvgl_x = 279;
+    if (*lvgl_y < 0) *lvgl_y = 0;
+    if (*lvgl_y > 239) *lvgl_y = 239;
 }
 
 // Determine which button (if any) was hit at LVGL coordinates.
