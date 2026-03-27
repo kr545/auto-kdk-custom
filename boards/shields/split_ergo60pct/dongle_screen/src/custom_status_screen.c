@@ -105,27 +105,27 @@ struct touch_btn_zone {
 };
 
 static const struct touch_btn_zone btn_zones[BTN_COUNT] = {
-    // Corners
-    [BTN_TL] = {  0,  47,   0,  47, ACT_SYS, 0, 1, 0, "Boot"},
-    [BTN_TR] = {232, 279,   0,  47, ACT_SYS, 0, 2, 0, "Reboot"},
-    [BTN_BL] = {  0,  47, 192, 239, ACT_HID_CONS, 0x0C, 0x032, 0, "Sleep"},
-    [BTN_BR] = {232, 279, 192, 239, ACT_HID_KEY, 0x07, 0x0F, 0x08, "Lock"}, // LGUI + L
-    // Top
-    [BTN_T1] = { 58, 105,   0,  47, ACT_BLE, 0, 0, 0, "BT 1"},
-    [BTN_T2] = {116, 163,   0,  47, ACT_BLE, 0, 1, 0, "BT 2"},
-    [BTN_T3] = {174, 221,   0,  47, ACT_BLE, 0, 99, 0, "BT Clr"},
-    // Bottom
-    [BTN_B1] = { 58, 105, 192, 239, ACT_HID_KEY, 0x07, 0x7B, 0, "Cut"},
-    [BTN_B2] = {116, 163, 192, 239, ACT_HID_KEY, 0x07, 0x7C, 0, "Copy"},
-    [BTN_B3] = {174, 221, 192, 239, ACT_HID_KEY, 0x07, 0x7D, 0, "Paste"},
-    // Left
-    [BTN_L1] = {  0,  47,  48,  95, ACT_HID_CONS, 0x0C, 0xE9, 0, "Vol+"},
-    [BTN_L2] = {  0,  47,  96, 143, ACT_HID_CONS, 0x0C, 0xE2, 0, "Mute"},
-    [BTN_L3] = {  0,  47, 144, 191, ACT_HID_CONS, 0x0C, 0xEA, 0, "Vol-"},
-    // Right
-    [BTN_R1] = {232, 279,  48,  95, ACT_HID_CONS, 0x0C, 0xB6, 0, "Prev"},
-    [BTN_R2] = {232, 279,  96, 143, ACT_HID_CONS, 0x0C, 0xCD, 0, "Play"},
-    [BTN_R3] = {232, 279, 144, 191, ACT_HID_CONS, 0x0C, 0xB5, 0, "Next"},
+    // Corners (60x60)
+    [BTN_TL] = {  0,  59,   0,  59, ACT_SYS, 0, 1, 0, "Boot"},
+    [BTN_TR] = {220, 279,   0,  59, ACT_SYS, 0, 2, 0, "Reboot"},
+    [BTN_BL] = {  0,  59, 180, 239, ACT_HID_CONS, 0x0C, 0x032, 0, "Sleep"},
+    [BTN_BR] = {220, 279, 180, 239, ACT_HID_KEY, 0x07, 0x0F, 0x08, "Lock"}, // LGUI + L
+    // Top edge (3): BT controls, overlapping horizontally by 5px
+    [BTN_T1] = { 55, 114,   0,  59, ACT_BLE, 0, 0, 0, "BT 1"},
+    [BTN_T2] = {110, 169,   0,  59, ACT_BLE, 0, 1, 0, "BT 2"},
+    [BTN_T3] = {165, 224,   0,  59, ACT_BLE, 0, 99, 0, "BT Clr"},
+    // Bottom edge (3): Clipboard
+    [BTN_B1] = { 55, 114, 180, 239, ACT_HID_KEY, 0x07, 0x7B, 0, "Cut"},
+    [BTN_B2] = {110, 169, 180, 239, ACT_HID_KEY, 0x07, 0x7C, 0, "Copy"},
+    [BTN_B3] = {165, 224, 180, 239, ACT_HID_KEY, 0x07, 0x7D, 0, "Paste"},
+    // Left edge (3): Volume, overlapping vertically by 15px
+    [BTN_L1] = {  0,  59,  45, 104, ACT_HID_CONS, 0x0C, 0xE9, 0, "Vol+"},
+    [BTN_L2] = {  0,  59,  90, 149, ACT_HID_CONS, 0x0C, 0xE2, 0, "Mute"},
+    [BTN_L3] = {  0,  59, 135, 194, ACT_HID_CONS, 0x0C, 0xEA, 0, "Vol-"},
+    // Right edge (3): Media
+    [BTN_R1] = {220, 279,  45, 104, ACT_HID_CONS, 0x0C, 0xB6, 0, "Prev"},
+    [BTN_R2] = {220, 279,  90, 149, ACT_HID_CONS, 0x0C, 0xCD, 0, "Play"},
+    [BTN_R3] = {220, 279, 135, 194, ACT_HID_CONS, 0x0C, 0xB5, 0, "Next"},
 };
 
 // LVGL button label objects

@@ -446,42 +446,44 @@
 
     // --- Touch Buttons (Screen 2) — Semicircle edge style ---
     const btnDefs = [
-      // Corner buttons (48x48)
-      { x: 0, y: 0, w: 48, h: 48, label: 'Boot', edge: 'corner-tl' },
-      { x: 232, y: 0, w: 48, h: 48, label: 'Reboot', edge: 'corner-tr' },
-      { x: 0, y: 192, w: 48, h: 48, label: 'Sleep', edge: 'corner-bl' },
-      { x: 232, y: 192, w: 48, h: 48, label: 'Lock', edge: 'corner-br' },
-      // Top edge (3): BT controls
-      { x: 58, y: 0, w: 48, h: 48, label: 'BT 1', edge: 'top' },
-      { x: 116, y: 0, w: 48, h: 48, label: 'BT 2', edge: 'top' },
-      { x: 174, y: 0, w: 48, h: 48, label: 'BT Clr', edge: 'top' },
+      // Corner buttons (60x60)
+      { x: 0, y: 0, w: 60, h: 60, label: 'Boot', edge: 'corner-tl' },
+      { x: 220, y: 0, w: 60, h: 60, label: 'Reboot', edge: 'corner-tr' },
+      { x: 0, y: 180, w: 60, h: 60, label: 'Sleep', edge: 'corner-bl' },
+      { x: 220, y: 180, w: 60, h: 60, label: 'Lock', edge: 'corner-br' },
+      // Top edge (3): BT controls, overlapping horizontally by (300-280)/4 = 5px
+      // 0..60, 55..115, 110..170, 165..225, 220..280
+      { x: 55, y: 0, w: 60, h: 60, label: 'BT 1', edge: 'top' },
+      { x: 110, y: 0, w: 60, h: 60, label: 'BT 2', edge: 'top' },
+      { x: 165, y: 0, w: 60, h: 60, label: 'BT Clr', edge: 'top' },
       // Bottom edge (3): Clipboard
-      { x: 58, y: 192, w: 48, h: 48, label: 'Cut', edge: 'bottom' },
-      { x: 116, y: 192, w: 48, h: 48, label: 'Copy', edge: 'bottom' },
-      { x: 174, y: 192, w: 48, h: 48, label: 'Paste', edge: 'bottom' },
-      // Left edge (3): Volume
-      { x: 0, y: 48, w: 48, h: 48, label: 'Vol+', edge: 'left' },
-      { x: 0, y: 96, w: 48, h: 48, label: 'Mute', edge: 'left' },
-      { x: 0, y: 144, w: 48, h: 48, label: 'Vol-', edge: 'left' },
+      { x: 55, y: 180, w: 60, h: 60, label: 'Cut', edge: 'bottom' },
+      { x: 110, y: 180, w: 60, h: 60, label: 'Copy', edge: 'bottom' },
+      { x: 165, y: 180, w: 60, h: 60, label: 'Paste', edge: 'bottom' },
+      // Left edge (3): Volume, overlapping vertically by (300-240)/4 = 15px
+      // 0..60, 45..105, 90..150, 135..195, 180..240
+      { x: 0, y: 45, w: 60, h: 60, label: 'Vol+', edge: 'left' },
+      { x: 0, y: 90, w: 60, h: 60, label: 'Mute', edge: 'left' },
+      { x: 0, y: 135, w: 60, h: 60, label: 'Vol-', edge: 'left' },
       // Right edge (3): Media
-      { x: 232, y: 48, w: 48, h: 48, label: 'Prev', edge: 'right' },
-      { x: 232, y: 96, w: 48, h: 48, label: 'Play', edge: 'right' },
-      { x: 232, y: 144, w: 48, h: 48, label: 'Next', edge: 'right' },
+      { x: 220, y: 45, w: 60, h: 60, label: 'Prev', edge: 'right' },
+      { x: 220, y: 90, w: 60, h: 60, label: 'Play', edge: 'right' },
+      { x: 220, y: 135, w: 60, h: 60, label: 'Next', edge: 'right' },
     ];
 
     function semiRadius(edge, w, h) {
-      const r = Math.min(w, h);
+      let rOptions = '0';
       switch (edge) {
-        case 'top': return `0 0 ${r}px ${r}px`;
-        case 'bottom': return `${r}px ${r}px 0 0`;
-        case 'left': return `0 ${r}px ${r}px 0`;
-        case 'right': return `${r}px 0 0 ${r}px`;
-        case 'corner-tl': return `0 0 ${r}px 0`;
-        case 'corner-tr': return `0 0 0 ${r}px`;
-        case 'corner-bl': return `0 ${r}px 0 0`;
-        case 'corner-br': return `${r}px 0 0 0`;
+        case 'corner-tl': rOptions = '0 0 60px 0'; break;
+        case 'corner-tr': rOptions = '0 0 0 60px'; break;
+        case 'corner-bl': rOptions = '0 60px 0 0'; break;
+        case 'corner-br': rOptions = '60px 0 0 0'; break;
+        case 'top': rOptions = '0 0 60px 60px'; break;
+        case 'bottom': rOptions = '60px 60px 0 0'; break;
+        case 'left': rOptions = '0 60px 60px 0'; break;
+        case 'right': rOptions = '60px 0 0 60px'; break;
       }
-      return '0';
+      return rOptions;
     }
 
     const systemScreen = document.getElementById('screen-system');
