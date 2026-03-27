@@ -17,11 +17,16 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
+#define LAYER_STATUS_DEBOUNCE_MS 80
+
 struct layer_status_state
 {
     uint8_t index;
     const char *label;
 };
+
+static struct layer_status_state pending_state;
+static bool pending_state_valid = false;
 
 static void set_layer_symbol(lv_obj_t *label, struct layer_status_state state)
 {
@@ -43,10 +48,30 @@ static void set_layer_symbol(lv_obj_t *label, struct layer_status_state state)
     }
 }
 
-static void layer_status_update_cb(struct layer_status_state state)
+static void apply_layer_status_state(struct layer_status_state state)
 {
     struct zmk_widget_layer_status *widget;
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_symbol(widget->obj, state); }
+}
+
+static void layer_status_deferred_update(struct k_work *work)
+{
+    ARG_UNUSED(work);
+
+    if (!pending_state_valid) {
+        return;
+    }
+
+    apply_layer_status_state(pending_state);
+}
+
+static K_WORK_DELAYABLE_DEFINE(layer_status_update_work, layer_status_deferred_update);
+
+static void layer_status_update_cb(struct layer_status_state state)
+{
+    pending_state = state;
+    pending_state_valid = true;
+    k_work_reschedule(&layer_status_update_work, K_MSEC(LAYER_STATUS_DEBOUNCE_MS));
 }
 
 static struct layer_status_state layer_status_get_state(const zmk_event_t *eh)
