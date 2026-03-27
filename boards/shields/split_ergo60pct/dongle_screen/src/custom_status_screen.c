@@ -420,6 +420,11 @@ static void raw_to_lvgl(int32_t raw_x, int32_t raw_y,
     if (*lvgl_y > 239) *lvgl_y = 239;
 }
 
+#define SCREEN_SWITCH_CENTER_X_MIN 80
+#define SCREEN_SWITCH_CENTER_X_MAX 199
+#define SCREEN_SWITCH_CENTER_Y_MIN 70
+#define SCREEN_SWITCH_CENTER_Y_MAX 169
+
 // Determine which button (if any) was hit at LVGL coordinates.
 // Use the actual rendered object bounds so visual placement and touch target
 // always match, even if alignment/offset math changes.
@@ -439,6 +444,11 @@ static int find_touched_button(int32_t lx, int32_t ly) {
         }
     }
     return -1;
+}
+
+static bool is_screen_switch_area(int32_t lx, int32_t ly) {
+    return lx >= SCREEN_SWITCH_CENTER_X_MIN && lx <= SCREEN_SWITCH_CENTER_X_MAX &&
+           ly >= SCREEN_SWITCH_CENTER_Y_MIN && ly <= SCREEN_SWITCH_CENTER_Y_MAX;
 }
 
 // Visual feedback: briefly highlight a button
@@ -545,10 +555,12 @@ static void touch_input_callback(struct input_event *evt) {
                     last_pressed_idx = idx;
                     struct touch_event_msg msg = { .idx = idx, .pressed = true };
                     k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
-                } else {
+                } else if (is_screen_switch_area(lx, ly)) {
                     last_pressed_idx = -1;
                     struct touch_event_msg msg = { .idx = -1, .pressed = true };
                     k_msgq_put(&touch_msgq, &msg, K_NO_WAIT);
+                } else {
+                    last_pressed_idx = -1;
                 }
                 k_work_submit(&touch_process_work);
             } else {
