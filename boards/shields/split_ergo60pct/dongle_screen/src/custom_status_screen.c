@@ -412,11 +412,21 @@ static void raw_to_lvgl(int32_t raw_x, int32_t raw_y,
     *lvgl_y = raw_x;
 }
 
-// Determine which button (if any) was hit at LVGL coordinates
+// Determine which button (if any) was hit at LVGL coordinates.
+// Use the actual rendered object bounds so visual placement and touch target
+// always match, even if alignment/offset math changes.
 static int find_touched_button(int32_t lx, int32_t ly) {
     for (int i = 0; i < BTN_COUNT; i++) {
-        if (lx >= btn_zones[i].x_min && lx <= btn_zones[i].x_max &&
-            ly >= btn_zones[i].y_min && ly <= btn_zones[i].y_max) {
+        if (btn_bgs[i] == NULL) {
+            continue;
+        }
+
+        int32_t x1 = lv_obj_get_x(btn_bgs[i]);
+        int32_t y1 = lv_obj_get_y(btn_bgs[i]);
+        int32_t x2 = x1 + lv_obj_get_width(btn_bgs[i]) - 1;
+        int32_t y2 = y1 + lv_obj_get_height(btn_bgs[i]) - 1;
+
+        if (lx >= x1 && lx <= x2 && ly >= y1 && ly <= y2) {
             return i;
         }
     }
