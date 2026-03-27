@@ -426,6 +426,39 @@ static void btn_highlight(int idx, bool on) {
 // Currently pressed button index (-1 = none)
 static int active_btn = -1;
 
+// Work queue handlers to safely interact with LVGL/ZMK from the system work queue
+static struct k_work touch_press_work;
+static struct k_work touch_release_work;
+static struct k_work touch_screen_swap_work;
+
+static void touch_press_handler(struct k_work *work) {
+    if (active_btn >= 0) {
+        btn_highlight(active_btn, true);
+        raise_keycode_event(btn_zones[active_btn].keycode, true);
+        LOG_INF("Button %s pressed (keycode 0x%02X)",
+                btn_zones[active_btn].label, btn_zones[active_btn].keycode);
+    }
+}
+
+static void touch_release_handler(struct k_work *work) {
+    if (active_btn >= 0) {
+        btn_highlight(active_btn, false);
+        raise_keycode_event(btn_zones[active_btn].keycode, false);
+        LOG_INF("Button %s released", btn_zones[active_btn].label);
+        active_btn = -1;
+    }
+}
+
+static void touch_screen_swap_handler(struct k_work *work) {
+    int next = (current_screen + 1) % SCREEN_COUNT;
+    switch_to_screen(next);
+    LOG_INF("Screen tapped on empty area, switching to screen %d", next);
+}
+
+K_WORK_DEFINE(touch_press_work, touch_press_handler);
+K_WORK_DEFINE(touch_release_work, touch_release_handler);
+K_WORK_DEFINE(touch_screen_swap_work, touch_screen_swap_handler);
+
 // Zephyr Input Listener – filtered to CST816S touch sensor only.
 static void touch_input_callback(struct input_event *evt) {
     if (touch_dev != NULL && evt->dev != touch_dev) {
@@ -450,29 +483,19 @@ static void touch_input_callback(struct input_event *evt) {
                 int idx = find_touched_button(lx, ly);
                 if (idx >= 0) {
                     active_btn = idx;
-                    btn_highlight(idx, true);
-                    raise_keycode_event(btn_zones[idx].keycode, true);
-                    LOG_INF("Button %s pressed (keycode 0x%02X)",
-                            btn_zones[idx].label, btn_zones[idx].keycode);
+                    k_work_submit(&touch_press_work);
                 } else {
-                    int next = (current_screen + 1) % SCREEN_COUNT;
-                    switch_to_screen(next);
-                    LOG_INF("Screen tapped on empty area, switching to screen %d", next);
+                    k_work_submit(&touch_screen_swap_work);
                 }
             } else {
                 // Touch release
                 if (active_btn >= 0) {
-                    btn_highlight(active_btn, false);
-                    raise_keycode_event(btn_zones[active_btn].keycode, false);
-                    LOG_INF("Button %s released", btn_zones[active_btn].label);
-                    active_btn = -1;
+                    k_work_submit(&touch_release_work);
                 }
             }
         } else if (evt->value == 1) {
-            // Touch press on SCREEN_MAIN or SCREEN_KEYLOG (empty space) cycles the screen
-            int next = (current_screen + 1) % SCREEN_COUNT;
-            switch_to_screen(next);
-            LOG_INF("Screen tapped, switching to screen %d", next);
+            // Touch press on SCREEN_MAIN or SCREEN_KEYLOG cycles the screen
+            k_work_submit(&touch_screen_swap_work);
         }
     }
 }
