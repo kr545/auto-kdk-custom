@@ -135,8 +135,8 @@ static lv_obj_t *btn_bgs[BTN_COUNT];
 
 lv_style_t global_style;
 
-// 画面インデックス: 0=メイン, 1=System Control, 2=キーログ
-#define SCREEN_COUNT 3
+// 画面インデックス: 0=メイン, 1=System Control
+#define SCREEN_COUNT 2
 #define SCREEN_MAIN         0
 #define SCREEN_SYSTEM       1
 #define SCREEN_KEYLOG       2
@@ -460,7 +460,7 @@ static void btn_highlight(int idx, bool on) {
         lv_obj_set_style_bg_color(btn_bgs[idx], lv_color_hex(0x0077CC), LV_PART_MAIN);
         lv_obj_set_style_text_color(btn_labels[idx], lv_color_white(), LV_PART_MAIN);
     } else {
-        lv_obj_set_style_bg_color(btn_bgs[idx], lv_color_hex(0x333333), LV_PART_MAIN);
+        lv_obj_set_style_bg_color(btn_bgs[idx], lv_color_hex(0x000000), LV_PART_MAIN);
         lv_obj_set_style_text_color(btn_labels[idx], lv_color_hex(0xCCCCCC), LV_PART_MAIN);
     }
 }
@@ -702,7 +702,7 @@ lv_obj_t *zmk_display_status_screen()
         btn_bgs[i] = lv_obj_create(screen_text);
         lv_obj_set_size(btn_bgs[i], w - 2, h - 2);
         lv_obj_align(btn_bgs[i], LV_ALIGN_CENTER, off_x, off_y);
-        lv_obj_set_style_bg_color(btn_bgs[i], lv_color_hex(0x333333), LV_PART_MAIN);
+        lv_obj_set_style_bg_color(btn_bgs[i], lv_color_hex(0x000000), LV_PART_MAIN);
         lv_obj_set_style_bg_opa(btn_bgs[i], 220, LV_PART_MAIN);
         lv_obj_set_style_border_color(btn_bgs[i], lv_color_hex(0x666666), LV_PART_MAIN);
         lv_obj_set_style_border_width(btn_bgs[i], 1, LV_PART_MAIN);
